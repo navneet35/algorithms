@@ -1,3 +1,4 @@
+package commonalgo;
 /*
  * Flow: As discussed the URL will be stored in the database with corresponding to an auto incremented id.
  * Then this program will take that id as an input and make a alphanumeric url from that id.
