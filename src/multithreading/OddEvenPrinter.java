@@ -1,0 +1,64 @@
+package multithreading;
+
+public class OddEvenPrinter implements Runnable {
+  private String name;
+  private int maxLimit = 10;
+  private static boolean isOddPrinted = false;
+  public static final Object lock = "s";
+  
+  public static int counter  = 1;
+  
+  public OddEvenPrinter() {
+    
+  }
+  
+  public OddEvenPrinter(String name) {
+    this.setName(name);
+    System.out.println("Thread Created with name : " + name);
+  }
+  
+  @Override
+  public void run() {
+    System.out.println("thread running " + name);
+    try {
+      while(counter < maxLimit){
+        if(this.name.equals("Odd")){
+          printOdd();
+        }else{
+          printEven();
+        }
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static synchronized void printOdd() throws InterruptedException{
+    System.out.println("In odd method");
+      if(isOddPrinted)
+        OddEvenPrinter.class.wait();
+      System.out.println(Thread.currentThread().getName() + " printed value " + counter);
+      isOddPrinted = true;
+      counter++;
+      OddEvenPrinter.class.notify();      
+  }
+
+  public static synchronized void printEven() throws InterruptedException{
+    System.out.println("In even method");
+      if(!isOddPrinted)
+        OddEvenPrinter.class.wait();
+      System.out.println(Thread.currentThread().getName() + " printed value " + counter);
+      isOddPrinted = false;
+      counter++;
+      OddEvenPrinter.class.notify();
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+}
