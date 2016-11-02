@@ -20,7 +20,7 @@ public class AnnotationsTest {
   }
   
   public static void main(String[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-    Class c = AnnotationsTest.class;
+    Class<AnnotationsTest> c = AnnotationsTest.class;
     for(Method m : c.getDeclaredMethods()){
        if(m.isAnnotationPresent(LoginRequired.class)){
          AnnotationsTest o1 = new AnnotationsTest("First object");

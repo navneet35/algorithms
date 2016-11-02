@@ -1,9 +1,8 @@
 package tree;
 
 public class BinaryTreeTest {
-	BinaryTree tree;
-	
-	public void createTree(){
+  
+    public BinaryTree createTree(BinaryTree tree){
 		tree = new BinaryTree(1);
 		tree.left = new BinaryTree(2);
 		tree.right = new BinaryTree(3);
@@ -13,33 +12,65 @@ public class BinaryTreeTest {
 		tree.right.right = new BinaryTree(7);
 		tree.left.left.left = new BinaryTree(8);
 		tree.right.right.right = new BinaryTree(9);
+		tree.left.left.left.left = new BinaryTree(10);
+		return tree;
 	}
+	
+	public BinaryTree createTreeForSymmetricCheck(BinaryTree tree){
+      tree = new BinaryTree(1);
+      tree.left = new BinaryTree(2);
+      tree.right = new BinaryTree(2);
+      tree.left.left = new BinaryTree(3);
+      tree.left.right = new BinaryTree(4);
+      tree.right.left = new BinaryTree(4);
+      tree.right.right = new BinaryTree(3);
+      tree.right.right.right = new BinaryTree(5);
+      tree.left.left.left = new BinaryTree(5);
+      return tree;
+    }
 
-	public void treeTraversals(){
+	public void treeTraversals(BinaryTree tree){
+	    BinaryTreeUtil btu = new BinaryTreeUtil();
 		System.out.println("Inorder Traversal");
-		tree.inOrderTraversal(tree);
+		btu.inOrderTraversal(tree);
 		System.out.println();
 		System.out.println("PreOrder Traversal");
-		tree.preOrderTraversal(tree);
+		btu.preOrderTraversal(tree);
 		System.out.println();
 		System.out.println("PostOrder Traversal");
-		tree.postOrderTraversal(tree);
+		btu.postOrderTraversal(tree);
 		System.out.println();
 		System.out.println("LevelOrder Traversal");
-		tree.levelOrderTraversal(tree);
+		btu.levelOrderTraversal(tree);
 		System.out.println();
 		System.out.println("SpiralOrder Traversal");
-		tree.spiralOrderTraversal(tree);
+		btu.spiralOrderTraversal(tree);
 		System.out.println();
 		System.out.println("Print all Root to Leaf Paths");
-		tree.printAllRootToLeafPath(tree);
+		btu.printAllRootToLeafPath(tree);
 	}
+	
 	
 	public static void main(String[] args) {
 		BinaryTreeTest treeTest = new BinaryTreeTest();
+		BinaryTreeUtil btUtil = new BinaryTreeUtil();
+		
+		BinaryTree tree = null;
 		System.out.println("Create tree");
-		treeTest.createTree();
-		treeTest.treeTraversals();
+		tree = treeTest.createTree(tree);
+		treeTest.treeTraversals(tree);
+		
+		BinaryTree symmetricTree = null;
+        System.out.println("Create tree");
+        symmetricTree = treeTest.createTreeForSymmetricCheck(symmetricTree);
+        System.out.println(btUtil.isBinaryTreeSymmetric(tree));
+        
+        btUtil.rightViewOfBinaryTree(tree);
+        
+        btUtil.printBinaryTreeVerticalOrder(tree);
+        
+        btUtil.topViewOfBinaryTree(tree);
+		
 	}
-
+	
 }
