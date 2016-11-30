@@ -217,5 +217,53 @@ public class BinaryTreeUtil {
     }
     
   }
+  
+  private void printBottomViewBinaryTreeUtil(BinaryTree root, int hd, Map<Integer, BinaryTree> hdNodeMap){
+    if(root == null)
+      return;
+    
+    hdNodeMap.put(hd, root);
+    printBottomViewBinaryTreeUtil(root.right, hd+1, hdNodeMap);
+    printBottomViewBinaryTreeUtil(root.left, hd-1, hdNodeMap);
+    
+  }
+  
+  public void bottomViewOfBinaryTree(BinaryTree root){
+    System.out.println("Print BOTTOM view of binary tree");
+    if(root == null)
+      return;
+    Map<Integer, BinaryTree> hdNodeMap = new TreeMap<Integer, BinaryTree>();
+    printBottomViewBinaryTreeUtil(root, 0, hdNodeMap);
+    
+    for(Entry<Integer, BinaryTree> hdNode : hdNodeMap.entrySet()){
+      System.out.print(String.format("For hd : %s node : %s", hdNode.getKey(), hdNode.getValue().data));
+      System.out.println();
+    }
+    
+  }
+  
+  private boolean isBSTUtil(BinaryTree root, BinaryTree prev){
+    if (root != null)
+    {
+        if (!isBSTUtil(root.left, prev))
+            return false;
+
+//        System.out.print(root.data + "->");
+        if (prev != null && root.data <= prev.data )
+            return false;
+        prev = root;
+        return isBSTUtil(root.right, prev);
+    }
+    return true;
+    
+  }
+  
+  public boolean isBST(BinaryTree root){
+    if(root == null) 
+      return true;
+    
+    BinaryTree prev = null;
+    return isBSTUtil(root, prev);
+  }
     
 }

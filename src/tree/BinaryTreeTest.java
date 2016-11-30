@@ -48,6 +48,13 @@ public class BinaryTreeTest {
 		System.out.println();
 		System.out.println("Print all Root to Leaf Paths");
 		btu.printAllRootToLeafPath(tree);
+		System.out.println();
+        System.out.println("Is BST");
+        if(btu.isBST(tree)){
+          System.out.println("Tree is BST");
+        }else{
+          System.out.println("Tree is NOT a BST");
+        }
 	}
 	
 	
@@ -70,6 +77,8 @@ public class BinaryTreeTest {
         btUtil.printBinaryTreeVerticalOrder(tree);
         
         btUtil.topViewOfBinaryTree(tree);
+        
+        btUtil.bottomViewOfBinaryTree(tree);
 		
 	}
 	
