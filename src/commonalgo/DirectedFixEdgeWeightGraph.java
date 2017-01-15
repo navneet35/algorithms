@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class DirectedFixEdgeWeightGraph{
+public class DirectedFixEdgeWeightGraph{
   private int V;
   private int E;
   private int fixedEdgeWeight;
@@ -14,24 +14,24 @@ class DirectedFixEdgeWeightGraph{
   public DirectedFixEdgeWeightGraph(){}
 
   public DirectedFixEdgeWeightGraph(int v, int e, int fixedEdgeWeight){
-    this.V = v;
-    this.E = e;
+    this.setV(v);
+    this.setE(e);
     this.fixedEdgeWeight = fixedEdgeWeight;
-    this.adjList = (List<Integer>[]) new List[V+1];
+    this.setAdjList((List<Integer>[]) new List[getV()+1]);
     for(int i=1;i<=v;i++){
-      adjList[i] = new ArrayList<>();
+      getAdjList()[i] = new ArrayList<>();
     }
   }
   
   public void addEdge(int v, int w){
-    adjList[v].add(w);
+    getAdjList()[v].add(w);
   }
   
   public void bfs(int s){
-	  Boolean[] visited = new Boolean[V+1];
+	  Boolean[] visited = new Boolean[getV()+1];
 	  Queue<Integer> queue = new LinkedList<Integer>();
 	  
-	  for(int i = 1; i<= V; i++)
+	  for(int i = 1; i<= getV(); i++)
 		visited[i] = false;
 	  
 	  queue.offer(s);
@@ -40,7 +40,7 @@ class DirectedFixEdgeWeightGraph{
 		  Integer node = queue.poll();
 		  System.out.println(node);
 		  visited[node] = true;
-		  for(Integer neighbour : adjList[node]){
+		  for(Integer neighbour : getAdjList()[node]){
 			  if(!visited[neighbour]){
 				queue.offer(neighbour);
 				visited[neighbour] = true;
@@ -51,8 +51,8 @@ class DirectedFixEdgeWeightGraph{
   }
   
   public void dfs(int s){
-	  Boolean[] visited = new Boolean[V+1];
-	  for(int i=1; i<=V; i++)
+	  Boolean[] visited = new Boolean[getV()+1];
+	  for(int i=1; i<=getV(); i++)
 		  visited[i] = false;
 	  
 	  dfsInGraph(s, visited);
@@ -61,7 +61,7 @@ class DirectedFixEdgeWeightGraph{
   private void dfsInGraph(int s, Boolean[] visited){
 	  System.out.println(s);
 	  visited[s] = true;
-	  for(Integer neighbour : adjList[s]){
+	  for(Integer neighbour : getAdjList()[s]){
 		  if(!visited[neighbour]){
 			  dfsInGraph(neighbour, visited);
 		  }
@@ -69,11 +69,11 @@ class DirectedFixEdgeWeightGraph{
   }
   
   public Integer[] shortestPath(int s){
-    Boolean[] visited = new Boolean[V+1];
-    Integer[] dist = new Integer[V+1];
+    Boolean[] visited = new Boolean[getV()+1];
+    Integer[] dist = new Integer[getV()+1];
     Queue<Integer> queue = new LinkedList<Integer>();
     
-    for(int i=1; i <= V; i++){
+    for(int i=1; i <= getV(); i++){
       visited[i] = false;
       dist[i] = Integer.MAX_VALUE;
     }
@@ -85,7 +85,7 @@ class DirectedFixEdgeWeightGraph{
       Integer node = queue.poll();
       visited[node] = true;
       
-      for(Integer v : adjList[node]){
+      for(Integer v : getAdjList()[node]){
         if(!visited[v]){
           queue.offer(v);
         }
@@ -99,6 +99,30 @@ class DirectedFixEdgeWeightGraph{
     
     return dist;
   }
+
+	public int getV() {
+		return V;
+	}
+	
+	public void setV(int v) {
+		V = v;
+	}
+
+	public List<Integer>[] getAdjList() {
+		return adjList;
+	}
+
+	public void setAdjList(List<Integer>[] adjList) {
+		this.adjList = adjList;
+	}
+
+	public int getE() {
+		return E;
+	}
+
+	public void setE(int e) {
+		E = e;
+	}
   
   
 }
