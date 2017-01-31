@@ -10,6 +10,10 @@ public class BinaryTree {
 		this.data = data;
 	}
 	
+	public static boolean isLeaf(BinaryTree node){
+		return (node != null && node.left == null && node.right == null);
+	}
+	
 }
 
 
