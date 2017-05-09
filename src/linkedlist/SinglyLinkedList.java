@@ -86,6 +86,70 @@ public class SinglyLinkedList<E> {
 		return true;
 	}
 	
+	public void reverse(){
+		if(first == null){
+			System.out.println("No element in the list");
+			return;
+		}
+		else if(first == last){
+			System.out.println("Only one element in the list. Cannot be reversed");
+			return;
+		}
+		
+		SingleNode<E> cur = first, prev, next;
+		prev = next = null;
+		
+		while(cur != null){
+			next = cur.getNext();
+			cur.setNext(prev);
+			prev = cur;
+			cur = next;
+		}
+		
+		last = first;
+		first = prev;
+	}
+	
+	public boolean ifContainsLoop(){
+		if(this.isEmpty())
+			return false;
+		
+		//Check using Floyd's Cycle Finding Algo
+		SingleNode<E> slow = first, fast = first;
+		while(slow != null && fast != null && fast.getNext() != null){
+			slow = slow.getNext();
+			fast = fast.getNext().getNext();
+			
+			if(slow == fast)
+				return true;
+		}
+		return false;
+	}
+	
+	/*
+	 * Reverse a linked list in a group of size k
+	 * */
+	public static SingleNode reverse(SingleNode node, int k){
+		SingleNode prev = null, cur = node, next = null;
+		if(node == null)
+			return null;
+		
+		for(int i = 0; i < k && cur != null; i++){
+			next = cur.getNext();
+			cur.setNext(prev);
+			prev = cur;
+			cur = next;
+		}
+		
+		if(next != null)
+			node.setNext(reverse(next, k));
+		
+		return prev;
+	}
+	
+	public boolean isEmpty(){
+		return first == null;
+	}
 	
 	public boolean swapNodes(E e1, E e2){
 		return false;
