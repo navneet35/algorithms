@@ -6,11 +6,11 @@ public class Singleton {
   }
   
   private static class SingletonHelper{
-    private static final Singleton singletonInstance = new Singleton();
+    private static final Singleton SINGLETON_INSTANCE = new Singleton();
   }
   
   public static Singleton getInstance(){
-    return SingletonHelper.singletonInstance;
+    return SingletonHelper.SINGLETON_INSTANCE;
   }
 
 }
