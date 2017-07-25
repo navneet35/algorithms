@@ -14,7 +14,7 @@ public class BinaryTreeUtil {
     int maxLevel = -1;
   }
   
-  public void inOrderTraversal(BinaryTree root){
+  public static void inOrderTraversal(BinaryTree root){
       if(root == null)
           return;
       inOrderTraversal(root.left);
@@ -22,7 +22,7 @@ public class BinaryTreeUtil {
       inOrderTraversal(root.right);
   }
   
-  public void preOrderTraversal(BinaryTree root){
+  public static void preOrderTraversal(BinaryTree root){
       if(root == null)
           return;
       System.out.print(root.data + ", ");
@@ -30,7 +30,7 @@ public class BinaryTreeUtil {
       preOrderTraversal(root.right);
   }
   
-  public void postOrderTraversal(BinaryTree root){
+  public static void postOrderTraversal(BinaryTree root){
       if(root == null)
           return;
       postOrderTraversal(root.left);
