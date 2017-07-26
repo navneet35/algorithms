@@ -54,6 +54,14 @@ public class ChildrenSumProperty {
 			
 	}
 	
+	static boolean isSumProperty(BinaryTree node){
+		if(node == null || BinaryTree.isLeaf(node))
+			return true;
+		int leftData = (node.left != null) ? node.left.data : 0;
+		int rightData = (node.right != null) ? node.right.data : 0;
+		return (node.data == (leftData + rightData) && isSumProperty(node.left) && isSumProperty(node.right));
+	}
+	
 	static BinaryTree createTree(){
 		BinaryTree root = new BinaryTree(10);
 		root.left = new BinaryTree(8);
@@ -66,7 +74,15 @@ public class ChildrenSumProperty {
 	
 	public static void main(String[] args) {
 		BinaryTree tree = createTree();
-		
+		boolean result = isSumProperty(tree);
+		System.out.println("Does Tree satisfies children sum property : " + result);
+		if(!result){
+			System.out.println("Converting tree to satisfy children sum property.");
+			convertChildrenSumProperty(tree);
+			System.out.println("Converted. Inorder traversal:");
+			BinaryTreeUtil.inOrderTraversal(tree);
+			
+		}
 	}
 
 }
