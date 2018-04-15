@@ -32,7 +32,7 @@ public class SingleNode<E> {
 	}
 	
 	public boolean equalsData(E e){
-		return this.data == e;
+		return this.data.equals(e);
 	}
 	
 }

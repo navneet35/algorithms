@@ -5,6 +5,9 @@ public class SinglyLinkedList<E> {
 	private SingleNode<E> last;
 	private int size;
 	
+	/**
+	 * This method prints the content of the linked list.
+	 * */
 	public void printList(){
 		if(size == 0){
 			System.out.println("No nodes in the list");
@@ -16,6 +19,10 @@ public class SinglyLinkedList<E> {
 		System.out.println();
 	}
 	
+	/**
+	 * This method adds the record at the end of the linked list.
+	 * @param e record to be added
+	 * */
 	public void add(E e){
 		SingleNode<E> l = last;
 		SingleNode<E> newNode = new SingleNode<E>(e, null);
@@ -29,6 +36,10 @@ public class SinglyLinkedList<E> {
 		
 	}
 	
+	/**
+	 * This method adds the record at the start of the linked list.
+	 * @param e record to be added
+	 * */
 	public void addFirst(E e){
 		SingleNode<E> f = first;
 		SingleNode<E> newNode = new SingleNode<E>(e, null);
@@ -71,7 +82,10 @@ public class SinglyLinkedList<E> {
 		return true;
 	}
 
-	
+	/**
+	 * This method removes the record at a specific position in the linked list.
+	 * @param position position on which the records present is to be deleted
+	 * */	
 	public boolean deleteNodeAtPosition(Integer position){
 		if(position > size)
 			return false;
@@ -86,6 +100,9 @@ public class SinglyLinkedList<E> {
 		return true;
 	}
 	
+	/**
+	 * This method reverse the linked list.
+	 * */
 	public void reverse(){
 		if(first == null){
 			System.out.println("No element in the list");
@@ -110,6 +127,9 @@ public class SinglyLinkedList<E> {
 		first = prev;
 	}
 	
+	/**
+	 * This method checks if there is any loop in the linked list.
+	 * */
 	public boolean ifContainsLoop(){
 		if(this.isEmpty())
 			return false;
@@ -147,14 +167,27 @@ public class SinglyLinkedList<E> {
 		return prev;
 	}
 	
+	/**
+	 * This method check if the linked list is empty.
+	 * @return true if list is empty else false
+	 * */
 	public boolean isEmpty(){
 		return first == null;
 	}
 	
+	/**
+	 * This method swaps two records in the linked list
+	 * @param e1 first record
+	 * @param e2 second record
+	 * */
 	public boolean swapNodes(E e1, E e2){
 		return false;
 	}
 	
+	/**
+	 * This method returns the first record in the linked list
+	 * @return first record
+	 * */
 	public SingleNode<E> getFirst() {
 		return first;
 	}
