@@ -17,7 +17,7 @@ public class MaxDiffNodeAndAncestor {
 		if(diff > maxDiff)
 			maxDiff = diff;
 		
-		return Math.min(lMin, rMin);
+		return Math.min(Math.min(lMin, rMin), node.data);
 	}
 	
 	static BinaryTree createTree(){
